@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, OnChanges, Input, OnInit } from '@angular/core';
 import { Satellite } from '../satellite';
 import { Counts } from "../counts";
 
@@ -7,7 +7,8 @@ import { Counts } from "../counts";
   templateUrl: './orbit-counts.component.html',
   styleUrls: ['./orbit-counts.component.css']
 })
-export class OrbitCountsComponent implements OnInit {
+
+export class OrbitCountsComponent implements OnInit, OnChanges {
 
   @Input() satellites: Satellite[];
   counts: Counts;
@@ -22,11 +23,18 @@ export class OrbitCountsComponent implements OnInit {
       station: 0,
       telescope: 0
     }
+
   }
 
   ngOnInit() {
+
   }
-  
+
+  ngOnChanges() {
+    this.satCounts();
+  }
+
+
   satCounts() {
     // reset each satellite count to 0 
     for (let property in this.counts) {
@@ -36,7 +44,6 @@ export class OrbitCountsComponent implements OnInit {
     for(let i=0; i<this.satellites.length; i++) {
       //increment satellite count by satellite type
       if (this.satellites[i].type.toLowerCase() === 'space debris') {
-        console.log("success");
         this.counts.debris++;
       } 
       if (this.satellites[i].type.toLowerCase() === 'communication') {
@@ -60,3 +67,5 @@ export class OrbitCountsComponent implements OnInit {
   }
   
 }
+
+

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output } from '@angular/core';
 import { Satellite } from './satellite';
 import { OrbitCountsComponent } from './orbit-counts/orbit-counts.component';
 
@@ -9,6 +9,7 @@ import { OrbitCountsComponent } from './orbit-counts/orbit-counts.component';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+
   title = 'orbit-report';
 
   sourceList: Satellite[];
@@ -31,6 +32,7 @@ export class AppComponent {
           this.displayList = this.sourceList.slice(0);
        }.bind(this));
     }.bind(this));
+
  }
 
   ngAfterViewInit() {
